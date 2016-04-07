@@ -35,6 +35,8 @@ LIB_OBJS += edit.o
 
 #LIB_OBJS += pcsc_funcs.o
 
+LIB_OBJS += glog_debug.o
+
 libutils.a: $(LIB_OBJS)
 	$(AR) crT $@ $?
 

@@ -28,7 +28,7 @@
 #include "config_file.h"
 #include "eap_register.h"
 #include "ctrl_iface.h"
-
+#include "utils/glog_debug.h"
 
 struct hapd_global {
 	void **drv_priv;
@@ -660,6 +660,9 @@ int main(int argc, char *argv[])
 
 	wpa_msg_register_ifname_cb(hostapd_msg_ifname_cb);
 
+	glog_init(argv[0], NULL);
+	GLOG_INFO("Start");
+
 	if (log_file)
 		wpa_debug_open_file(log_file);
 	else
@@ -800,6 +803,7 @@ int main(int argc, char *argv[])
 	fst_global_deinit();
 
 	os_program_deinit();
+	glog_deinit();
 
 	return ret;
 }
