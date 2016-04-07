@@ -13,6 +13,7 @@
 #ifndef CONFIG_NATIVE_WINDOWS
 
 #include "utils/common.h"
+#include "utils/glog_debug.h"
 #include "common/ieee802_11_defs.h"
 #include "common/ieee802_11_common.h"
 #include "common/hw_features_common.h"
@@ -30,7 +31,7 @@
 #include "hs20.h"
 #include "dfs.h"
 
-
+#define NEED_AP_MLME
 #ifdef NEED_AP_MLME
 
 static u8 * hostapd_eid_rm_enabled_capab(struct hostapd_data *hapd, u8 *eid,
@@ -681,6 +682,10 @@ void handle_probe_req(struct hostapd_data *hapd,
 			   MAC2STR(mgmt->sa));
 		return;
 	}
+
+	GLOG_INFO("Received Probe Request frame mac:%02x:%02x:%02x:%02x:%02x:%02x ssid:%s",
+			MAC2STR(mgmt->sa),
+			elems.ssid_len>0 ? wpa_ssid_txt(elems.ssid, elems.ssid_len):"null");
 
 	if ((!elems.ssid || !elems.supp_rates)) {
 		wpa_printf(MSG_DEBUG, "STA " MACSTR " sent probe request "

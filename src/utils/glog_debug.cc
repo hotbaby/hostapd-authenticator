@@ -46,6 +46,7 @@ void glog_init(const char *argv0, const char *log_dir)
 	else {
 		FLAGS_log_dir = log_dir;
 	}
+	FLAGS_logbufsecs = 5;
 	FLAGS_logtostderr = 0;
 }
 

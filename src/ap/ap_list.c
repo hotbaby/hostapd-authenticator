@@ -12,6 +12,7 @@
 
 #include "utils/common.h"
 #include "utils/eloop.h"
+#include "utils/glog_debug.h"
 #include "common/ieee802_11_defs.h"
 #include "common/ieee802_11_common.h"
 #include "hostapd.h"
@@ -209,6 +210,14 @@ void ap_list_process_beacon(struct hostapd_iface *iface,
 		ap->ht_support = 1;
 	else
 		ap->ht_support = 0;
+
+	GLOG_INFO("Received beacon frame mac:%02x:%02x:%02x:%02x:%02x:%02x "
+			"ssid:%s beacon_int:%d channel:%d ht_support:%d",
+			MAC2STR(mgmt->sa),
+			elems->ssid_len>0 ? wpa_ssid_txt(elems->ssid, elems->ssid_len):"null",
+			mgmt->u.beacon.beacon_int,
+			ap->channel,
+			ap->ht_support);
 
 	os_get_reltime(&ap->last_beacon);
 
