@@ -31,7 +31,6 @@
 #include "hs20.h"
 #include "dfs.h"
 
-#define NEED_AP_MLME
 #ifdef NEED_AP_MLME
 
 static u8 * hostapd_eid_rm_enabled_capab(struct hostapd_data *hapd, u8 *eid,
