@@ -69,8 +69,11 @@ void wpa_debug_print_timestamp(void);
  *
  * Note: New line '\n' is added to the end of the text when printing to stdout.
  */
-void wpa_printf(int level, const char *fmt, ...)
-PRINTF_FORMAT(2, 3);
+#define wpa_printf(level, fmt, ...) \
+	glog_debug(level, __FILE__, __LINE__, fmt, ##__VA_ARGS__)
+
+//void wpa_printf(int level, const char *fmt, ...)
+//PRINTF_FORMAT(2, 3);
 
 /**
  * wpa_hexdump - conditional hex dump
