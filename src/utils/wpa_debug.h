@@ -10,6 +10,7 @@
 #define WPA_DEBUG_H
 
 #include "wpabuf.h"
+#include "glog_debug.h"
 
 extern int wpa_debug_level;
 extern int wpa_debug_show_keys;
@@ -19,7 +20,7 @@ extern int wpa_debug_timestamp;
  * use these for debugging purposes. */
 
 enum {
-	MSG_EXCESSIVE, MSG_MSGDUMP, MSG_DEBUG, MSG_INFO, MSG_WARNING, MSG_ERROR
+	MSG_EXCESSIVE=0, MSG_MSGDUMP=0, MSG_DEBUG=0, MSG_INFO=0, MSG_WARNING, MSG_ERROR
 };
 
 #ifdef CONFIG_NO_STDOUT_DEBUG

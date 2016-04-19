@@ -201,7 +201,7 @@ void wpa_debug_close_linux_tracing(void)
  *
  * Note: New line '\n' is added to the end of the text when printing to stdout.
  */
-void wpa_printf(int level, const char *fmt, ...)
+void wpa_printf2(int level, const char *fmt, ...)
 {
 	va_list ap;
 
@@ -824,12 +824,12 @@ void hostapd_logger(void *ctx, const u8 *addr, unsigned int module, int level,
 const char * debug_level_str(int level)
 {
 	switch (level) {
-	case MSG_EXCESSIVE:
-		return "EXCESSIVE";
-	case MSG_MSGDUMP:
-		return "MSGDUMP";
-	case MSG_DEBUG:
-		return "DEBUG";
+//	case MSG_EXCESSIVE:
+//		return "EXCESSIVE";
+//	case MSG_MSGDUMP:
+//		return "MSGDUMP";
+//	case MSG_DEBUG:
+//		return "DEBUG";
 	case MSG_INFO:
 		return "INFO";
 	case MSG_WARNING:

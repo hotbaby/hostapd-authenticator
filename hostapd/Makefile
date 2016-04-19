@@ -10,6 +10,7 @@ CFLAGS += $(EXTRA_CFLAGS)
 CFLAGS += -I$(abspath ../src)
 CFLAGS += -I$(abspath ../src/utils)
 LIBS += -lglog
+LIBS_c += -lglog
 
 export BINDIR ?= /usr/local/bin/
 
@@ -121,6 +122,7 @@ OBJS_c += ../src/utils/common.o
 OBJS += ../src/utils/wpa_debug.o
 OBJS += ../src/utils/glog_debug.o
 OBJS_c += ../src/utils/wpa_debug.o
+OBJS_c += ../src/utils/glog_debug.o
 OBJS += ../src/utils/wpabuf.o
 OBJS += ../src/utils/os_$(CONFIG_OS).o
 OBJS += ../src/utils/ip_addr.o
@@ -991,7 +993,7 @@ ifdef CONFIG_WPA_TRACE
 OBJS_c += ../src/utils/trace.o
 endif
 hostapd_cli: $(OBJS_c)
-	$(Q)$(CC) $(LDFLAGS) -o hostapd_cli $(OBJS_c) $(LIBS_c)
+	$(Q)g++ $(LDFLAGS) -o hostapd_cli $(OBJS_c) $(LIBS_c)
 	@$(E) "  LD " $@
 
 NOBJS = nt_password_hash.o ../src/crypto/ms_funcs.o $(SHA1OBJS)
